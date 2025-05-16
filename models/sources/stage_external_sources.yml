@@ -1,0 +1,125 @@
+version: 2
+
+sources:
+  - name: DailysourceCSV
+    database: STOCK_MANAGEMENT
+    schema: EXT_STOCKMANAGEMENT
+    loader: S3
+    description: "To load data into snowflake tables form amazon s3"
+
+    tables:
+        - name: AMAZONSALESHISTORY
+          meta:
+              owner: "deepthi.namburu@ovaledge.com"
+              model_maturity: in prod
+              frequency: Polls every 30 minutes
+          description: "Snowflake table which stores the AMAZONSALESHISTORY details"
+          external:
+             location: "@STOCK_MANAGEMENT.EXT_STOCKMANAGEMENT.STG_AMAZONSALESHISTORY"  # reference an existing external stage
+             file_format: (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1 TRIM_SPACE = TRUE ESCAPE_UNENCLOSED_FIELD = NONE)
+             auto_refresh: true     
+             snowpipe:
+              auto_ingest:    true  # requires either `aws_sns_topic` or `integration`
+              aws_sns_topic:  # Amazon S3
+              integration:    # Google Cloud or Azure
+              copy_options:   "on_error = continue, enforce_length = false" # e.g.                
+          columns:
+          - name: PRODUCTNUMBER
+            data_type: int
+            description: "PRODUCTNUMBER"
+            tests:
+              - unique
+          - name: SALEDATE
+            data_type: Date
+            description: "SALEDATE"
+          - name: SALESAMOUNT
+            data_type: Number(38,4)
+            description: "SALESAMOUNT"
+            
+        - name: ROGERSALESHISTORY
+          meta:
+              owner: "deepthi.namburu@ovaledge.com"
+              model_maturity: in prod
+              frequency: Polls every 30 minutes
+          description: "Snowflake table which stores the order details"
+          external:
+            location: "@STOCK_MANAGEMENT.EXT_STOCKMANAGEMENT.STG_KROGERSALESHISTORY"
+            file_format: (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1 TRIM_SPACE = TRUE ESCAPE_UNENCLOSED_FIELD = NONE)
+            auto_refresh: true
+            snowpipe:
+              auto_ingest:    true  # requires either `aws_sns_topic` or `integration`
+              aws_sns_topic:  # Amazon S3
+              integration:    # Google Cloud or Azure
+              copy_options:   "on_error = continue, enforce_length = false" # e.g.                     
+          columns:
+          - name: PRODUCTNUMBER
+            data_type: int
+            description: "PRODUCTNUMBER"
+            tests:
+              - unique
+          - name: SALEDATE
+            data_type: Date
+            description: "SALEDATE"
+          - name: SALESAMOUNT
+            data_type: Number(38,4)
+            description: "SALESAMOUNT"
+
+        - name: TARGETSALESHISTORY
+          meta:
+              owner: "deepthi.namburu@ovaledge.com"
+              model_maturity: in prod
+              frequency: Polls every 30 minutes
+          description: "Snowflake table which stores the AMAZONSALESHISTORY details"
+          external:
+             location: "@STOCK_MANAGEMENT.EXT_STOCKMANAGEMENT.STG_TARGETSALESHISTORY"  # reference an existing external stage
+             file_format: (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1 TRIM_SPACE = TRUE ESCAPE_UNENCLOSED_FIELD = NONE)
+             auto_refresh: true     
+             snowpipe:
+              auto_ingest:    true  # requires either `aws_sns_topic` or `integration`
+              aws_sns_topic:  # Amazon S3
+              integration:    # Google Cloud or Azure
+              copy_options:   "on_error = continue, enforce_length = false" # e.g.                
+          columns:
+          - name: PRODUCTNUMBER
+            data_type: int
+            description: "PRODUCTNUMBER"
+            tests:
+              - unique
+          - name: SALEDATE
+            data_type: Date
+            description: "SALEDATE"
+          - name: SALESAMOUNT
+            data_type: Number(38,4)
+            description: "SALESAMOUNT"
+
+        - name: WALMARTSALESHISTORY
+          meta:
+              owner: "deepthi.namburu@ovaledge.com"
+              model_maturity: in prod
+              frequency: Polls every 30 minutes
+          description: "Snowflake table which stores the AMAZONSALESHISTORY details"
+          external:
+             location: "@STOCK_MANAGEMENT.EXT_STOCKMANAGEMENT.STG_WALMARTSALESHISTORY"  # reference an existing external stage
+             file_format: (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1 TRIM_SPACE = TRUE ESCAPE_UNENCLOSED_FIELD = NONE)
+             auto_refresh: true     
+             snowpipe:
+              auto_ingest:    true  # requires either `aws_sns_topic` or `integration`
+              aws_sns_topic:  # Amazon S3
+              integration:    # Google Cloud or Azure
+              copy_options:   "on_error = continue, enforce_length = false" # e.g.                
+          columns:
+          - name: PRODUCTNUMBER
+            data_type: int
+            description: "PRODUCTNUMBER"
+            tests:
+              - unique
+          - name: SALEDATE
+            data_type: Date
+            description: "SALEDATE"
+          - name: SALESAMOUNT
+            data_type: Number(38,4)
+            description: "SALESAMOUNT"
+
+        
+        
+            
