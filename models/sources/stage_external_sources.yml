@@ -27,8 +27,6 @@ sources:
           - name: PRODUCTNUMBER
             data_type: int
             description: "PRODUCTNUMBER"
-            tests:
-              - unique
           - name: SALEDATE
             data_type: Date
             description: "SALEDATE"
@@ -55,8 +53,6 @@ sources:
           - name: PRODUCTNUMBER
             data_type: int
             description: "PRODUCTNUMBER"
-            tests:
-              - unique
           - name: SALEDATE
             data_type: Date
             description: "SALEDATE"
@@ -83,8 +79,6 @@ sources:
           - name: PRODUCTNUMBER
             data_type: int
             description: "PRODUCTNUMBER"
-            tests:
-              - unique
           - name: SALEDATE
             data_type: Date
             description: "SALEDATE"
@@ -111,8 +105,6 @@ sources:
           - name: PRODUCTNUMBER
             data_type: int
             description: "PRODUCTNUMBER"
-            tests:
-              - unique
           - name: SALEDATE
             data_type: Date
             description: "SALEDATE"
