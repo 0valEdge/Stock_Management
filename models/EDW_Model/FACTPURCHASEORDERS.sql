@@ -1,4 +1,4 @@
-{{ config(schema='Inventoryforecast') }}
+{{ config(schema='Inventory') }}
 
 SELECT DISTINCT E.EMPLOYEE_KEY,P.PRODUCTKEY,V.VENDORKEY,OD."DATE" AS OrderDate,DS.ShipMethodKey,
 DD."DATE" AS  DueDate ,SD."DATE"  AS ShipDate,DW.WareHouseKey,PH.PURCHASEORDERID AS PurchaseOrderNumber,
