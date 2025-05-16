@@ -1,6 +1,7 @@
-{{ config(schema='Inventoryforecast') }}
+{{ config(schema='Inventory') }}
 
-with DIMINVENTORY as (
-    select * from {{ ref('DIMPRODUCT') }}
+with source as (
+	select * from {{ ref('WAREHOUSE') }}
 )
-select * from DIMINVENTORY
+
+select * from source
